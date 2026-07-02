@@ -1,11 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
 import InputField from "../common/InputField";
 import Button from "../common/Button";
+import { registerUser } from "../../services/authService";
 
 export default function RegisterForm() {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -26,25 +29,24 @@ export default function RegisterForm() {
   const password = watch("password");
 
   const onSubmit = async (formData) => {
-    // Every user registering from the public website
-    // will always be a Patient.
-    const data = {
-      ...formData,
-      role: "patient",
-    };
-
     try {
-      console.log(data);
+      // Remove fields that should not be sent to the backend
+      const { confirmPassword, terms, ...data } = formData;
 
-      // Backend API Integration
-      // await axios.post("/api/auth/register", data);
+      const response = await registerUser(data);
 
-      toast.success("Registration successful!");
+      toast.success(response.message);
 
       reset();
+
+      setTimeout(() => {
+        navigate("/login");
+      }, 1500);
     } catch (error) {
-      toast.error("Registration failed.");
-      console.error(error);
+      toast.error(
+        error.response?.data?.message ||
+          "Registration failed."
+      );
     }
   };
 
@@ -130,14 +132,13 @@ export default function RegisterForm() {
         error={errors.confirmPassword}
       />
 
-      {/* Terms & Conditions */}
-
       <div>
         <label className="flex items-start gap-3 text-sm text-slate-600">
           <input
             type="checkbox"
             {...register("terms", {
-              required: "You must accept the Terms & Conditions",
+              required:
+                "You must accept the Terms & Conditions",
             })}
             className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600"
           />

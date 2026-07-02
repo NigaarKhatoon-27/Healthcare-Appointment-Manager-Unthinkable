@@ -1,15 +1,21 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
 import InputField from "../common/InputField";
 import Button from "../common/Button";
 
+import { useAuth } from "../../context/AuthContext";
+
 export default function LoginForm() {
+  const navigate = useNavigate();
+
+  const { login, loading } = useAuth();
+
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm({
     defaultValues: {
       email: "",
@@ -17,17 +23,29 @@ export default function LoginForm() {
     },
   });
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (formData) => {
     try {
-      console.log(data);
+      const response = await login(formData);
 
-      // Backend integration will be added later
-      // await axios.post("/api/auth/login", data);
+      toast.success(response.message);
 
-      toast.success("Login successful!");
+      switch (response.user.role) {
+        case "admin":
+          navigate("/admin/dashboard");
+          break;
+
+        case "doctor":
+          navigate("/doctor/dashboard");
+          break;
+
+        default:
+          navigate("/patient/dashboard");
+      }
     } catch (error) {
-      toast.error("Something went wrong.");
-      console.error(error);
+      toast.error(
+        error.response?.data?.message ||
+          "Login failed. Please try again."
+      );
     }
   };
 
@@ -92,7 +110,7 @@ export default function LoginForm() {
       <Button
         type="submit"
         fullWidth
-        loading={isSubmitting}
+        loading={loading}
       >
         Login
       </Button>
