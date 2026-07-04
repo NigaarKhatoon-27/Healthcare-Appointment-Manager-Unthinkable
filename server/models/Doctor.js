@@ -39,10 +39,10 @@ const doctorSchema = new mongoose.Schema(
       trim: true,
     },
 
-    bio: {
+    department: {
       type: String,
       default: "",
-      maxlength: 500,
+      trim: true,
     },
 
     licenseNumber: {
@@ -52,19 +52,66 @@ const doctorSchema = new mongoose.Schema(
       trim: true,
     },
 
-    rating: {
-      type: Number,
-      default: 0,
-      min: 0,
-      max: 5,
+    bio: {
+      type: String,
+      default: "",
+      maxlength: 1000,
     },
 
-    totalPatients: {
-      type: Number,
-      default: 0,
+    profileImage: {
+      type: String,
+      default: "",
+    },
+
+    languages: [
+      {
+        type: String,
+        trim: true,
+      },
+    ],
+
+    rating: {
+      average: {
+        type: Number,
+        default: 0,
+        min: 0,
+        max: 5,
+      },
+
+      totalReviews: {
+        type: Number,
+        default: 0,
+      },
+    },
+
+    statistics: {
+      totalPatients: {
+        type: Number,
+        default: 0,
+      },
+
+      totalAppointments: {
+        type: Number,
+        default: 0,
+      },
+
+      completedAppointments: {
+        type: Number,
+        default: 0,
+      },
     },
 
     profileCompleted: {
+      type: Boolean,
+      default: false,
+    },
+
+    isAvailable: {
+      type: Boolean,
+      default: true,
+    },
+
+    isVerified: {
       type: Boolean,
       default: false,
     },
@@ -74,9 +121,6 @@ const doctorSchema = new mongoose.Schema(
   }
 );
 
-const Doctor = mongoose.model(
-  "Doctor",
-  doctorSchema
-);
+const Doctor = mongoose.model("Doctor", doctorSchema);
 
 export default Doctor;

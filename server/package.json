@@ -28,7 +28,9 @@
     "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^8.16.3",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "nodemailer": "^9.0.3",
+    "openai": "^6.45.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"

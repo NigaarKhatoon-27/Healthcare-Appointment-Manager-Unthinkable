@@ -1,20 +1,29 @@
-# 🏥 Healthcare Appointment & Follow-up Manager
+# AI-Powered Healthcare Appointment & Follow-up Manager
 
-A modern MERN Stack web application that allows patients to book appointments, doctors to manage consultations, and administrators to manage the healthcare system efficiently.
+A full-stack MERN application that streamlines healthcare appointment scheduling and patient follow-up. The platform provides secure authentication, appointment booking, doctor availability management, AI-assisted symptom analysis, prescription management, dashboard analytics, PDF prescription generation, and email notifications.
 
----
+## Features
 
-## 🚀 Tech Stack
+- JWT Authentication & Authorization
+- Patient & Doctor Dashboards
+- Doctor Availability Management
+- Appointment Booking & Cancellation
+- AI Symptom Summary
+- Consultation Management
+- Digital Prescription System
+- PDF Prescription Download
+- Email Notifications
+- Dashboard Analytics
+- Responsive UI with Tailwind CSS
+
+## Tech Stack
 
 ### Frontend
-- React (Vite)
+- React.js
 - Tailwind CSS
-- React Router DOM
-- React Hook Form
+- React Router
 - Axios
-- Framer Motion
-- React Hot Toast
-- Lucide React
+- React Hook Form
 
 ### Backend
 - Node.js
@@ -22,85 +31,15 @@ A modern MERN Stack web application that allows patients to book appointments, d
 - MongoDB
 - Mongoose
 - JWT Authentication
-- bcrypt
-- cookie-parser
-- express-validator
 - Nodemailer
-- node-cron
-- Google Calendar API
-- OpenAI / Gemini API (Planned)
+- OpenAI API
 
----
+## Database
+- MongoDB Atlas
 
-## ✨ Features
-
-### Completed
-- Responsive Landing Page
-- Modern UI Components
-- Authentication UI
-- Login Page
-- Register Page
-- Reusable Form Components
-
-### Planned
-- JWT Authentication
-- Appointment Booking
-- Doctor Dashboard
-- Patient Dashboard
+## Future Enhancements
+- Video Consultation
+- AI Chat Assistant
+- Payment Gateway
+- Medical Reports Upload
 - Admin Dashboard
-- Email Notifications
-- Google Calendar Integration
-- AI Symptom Summary
-- Medication Reminders
-
----
-
-## 📂 Project Structure
-
-```text
-Healthcare-Appointment-Manager/
-
-client/
-server/
-README.md
-```
-
----
-
-## ⚙️ Installation
-
-### Clone the Repository
-
-```bash
-git clone https://github.com/YOUR_USERNAME/Healthcare-Appointment-Manager.git
-```
-
-### Frontend
-
-```bash
-cd client
-npm install
-npm run dev
-```
-
-### Backend
-
-```bash
-cd server
-npm install
-npm run dev
-```
-
----
-
-## 📌 Project Status
-
-🚧 Currently Under Development
-
----
-
-## 👨‍💻 Author
-
-Nigaar Khatoon
-
-B.Tech Computer Science Engineering
